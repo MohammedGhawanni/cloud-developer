@@ -1,6 +1,12 @@
-import express from 'express';
+import express, {
+  Router,
+  Request,
+  Response
+} from 'express';
+
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
+import { fileURLToPath } from 'url';
 
 (async () => {
 
@@ -13,11 +19,11 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
 
+
   // @TODO1 IMPLEMENT A RESTFUL ENDPOINT
   // GET /filteredimage?image_url={{URL}}
   // endpoint to filter an image from a public url.
   // IT SHOULD
-  //    1
   //    1. validate the image_url query
   //    2. call filterImageFromURL(image_url) to filter the image
   //    3. send the resulting file in the response
@@ -37,6 +43,29 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     res.send("try GET /filteredimage?image_url={{}}")
   } );
   
+
+  app.get("/filteredimage/", async (req:Request, res:Response) =>{
+    let { image_url } = req.query;
+    
+      //    1. validate the image_url query
+    if(!image_url){
+      return res.status(400).send("Please provide an image URL");
+    }
+
+      //    2. call filterImageFromURL(image_url) to filter the image
+    filterImageFromURL(image_url).then(
+      (resolvedUrl) => {
+        //    3. send the resulting file in the response
+        res.status(200).sendFile(resolvedUrl);
+
+        //    4. deletes any files on the server on finish of the response
+        deleteLocalFiles([resolvedUrl]);
+      },
+      (error) => {
+        res.status(400).send('File not found in bucket - Error:' + error.message);
+      });
+  });
+
 
   // Start the Server
   app.listen( port, () => {
