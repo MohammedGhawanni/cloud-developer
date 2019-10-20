@@ -3,7 +3,7 @@ import express, {
   Request,
   Response
 } from 'express';
-
+import fs from 'fs';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 import { fileURLToPath } from 'url';
@@ -59,13 +59,17 @@ import { fileURLToPath } from 'url';
         res.status(200).sendFile(resolvedUrl);
 
         //    4. deletes any files on the server on finish of the response
-        deleteLocalFiles([resolvedUrl]);
-      },
+        // deleteLocalFiles([resolvedUrl]);
+
+        },
       (error) => {
         res.status(400).send('File not found in bucket - Error:' + error.message);
       });
-  });
+      
 
+
+
+  });
 
   // Start the Server
   app.listen( port, () => {

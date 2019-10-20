@@ -1,9 +1,9 @@
 export const config = {
   "dev": {
-    "username": process.env.POSTGRESS_USERNAME,
-    "password": process.env.POSTGRESS_PASSWORD,
-    "database": process.env.POSTGRESS_DATABASE,
-    "host": process.env.POSTGRES_HOST,
+    "username": process.env.UDAGRAM_USERNAME,
+    "password": process.env.UDAGRAM_PASSWORD,
+    "database": process.env.UDAGRAM_DATABASE,
+    "host": process.env.UDAGRAM_HOST,
     "dialect": "postgres",
     "aws_region": process.env.AWS_REGION,
     "aws_media_bucket": process.env.AWS_MEDIA_BUCKET,
@@ -20,3 +20,4 @@ export const config = {
     "secret": "helloworld"
   }
 }
+
