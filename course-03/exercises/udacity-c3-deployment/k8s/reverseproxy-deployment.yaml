@@ -12,7 +12,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: scheele/reverseproxy
+      - image: ghawanni/p4-deployment
         name: reverseproxy
         imagePullPolicy: Always          
         resources:

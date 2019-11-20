@@ -12,7 +12,7 @@ spec:
         service: backend-feed
     spec:
       containers:
-      - image: scheele/udacity-restapi-feed
+      - image: ghawanni/p4-feed
         name: backend-feed
         imagePullPolicy: Always  
         resources:
@@ -32,42 +32,42 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: AWS_BUCKET
+              key: udagram-ghawanni-dev
         - name: AWS_PROFILE
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: AWS_PROFILE
+              key: default
         - name: AWS_REGION
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: AWS_REGION
+              key: us-east-1
         - name: JWT_SECRET
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: JWT_SECRET
+              key: helloworld
         - name: POSTGRESS_DB
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_DB
+              key: udagramghawanni
         - name: POSTGRESS_HOST
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_HOST
+              key: udagramghawanni.cf596czfqpcf.us-east-1.rds.amazonaws.com
         - name: POSTGRESS_PASSWORD
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_PASSWORD
+              key: udagramghawanni
         - name: POSTGRESS_USERNAME
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_USERNAME      
+              key: udagramghawanni      
         volumeMounts:
         - name: aws-secret
           mountPath: "/root/.aws/"

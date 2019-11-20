@@ -12,7 +12,7 @@ spec:
         service: backend-user
     spec:
       containers:
-      - image: scheele/udacity-restapi-user
+      - image: ghawanni/p4-user
         name: backend-user 
         imagePullPolicy: Always  
         resources:
@@ -32,27 +32,27 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: JWT_SECRET
+              key: helloworld
         - name: POSTGRESS_DB
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_DB
+              key: udagramghawanni
         - name: POSTGRESS_HOST
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: POSTGRESS_HOST
-        - name: POSTGRESS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: env-secret
-              key: POSTGRESS_PASSWORD
+              key: udagramghawanni.cf596czfqpcf.us-east-1.rds.amazonaws.com
         - name: POSTGRESS_USERNAME
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: POSTGRESS_USERNAME
+              key: udagramghawanni
+        - name: POSTGRESS_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: env-secret
+              key: udagramghawanni
       restartPolicy: Always
 
 
