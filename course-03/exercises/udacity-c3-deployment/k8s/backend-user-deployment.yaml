@@ -32,27 +32,27 @@ spec:
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: helloworld
+              key: JWT_SECRET
         - name: POSTGRESS_DB
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: udagramghawanni
+              key: POSTGRESS_DB
         - name: POSTGRESS_HOST
           valueFrom:
             configMapKeyRef:
               name: env-config
-              key: udagramghawanni.cf596czfqpcf.us-east-1.rds.amazonaws.com
+              key: POSTGRESS_HOST
         - name: POSTGRESS_USERNAME
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: udagramghawanni
+              key: POSTGRESS_USERNAME
         - name: POSTGRESS_PASSWORD
           valueFrom:
             secretKeyRef:
               name: env-secret
-              key: udagramghawanni
+              key: POSTGRESS_PASSWORD
       restartPolicy: Always
 
 
